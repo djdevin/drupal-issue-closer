@@ -1,0 +1,10 @@
+default:
+  suites:
+    default:
+      contexts:
+        - CustomContext
+        - Behat\MinkExtension\Context\MinkContext
+      paths: ['features']
+  extensions:
+    Behat\MinkExtension:
+      goutte: ~
