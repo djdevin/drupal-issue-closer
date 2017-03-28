@@ -4,7 +4,7 @@
     "behat/mink-extension": "*",
     "behat/mink-goutte-driver": "*",
     "behat/mink-selenium2-driver": "*",
-    "behat/behat": "dev-master"
+    "behat/behat": "~3.0"
   },
   "config": {
     "bin-dir": "bin/"
