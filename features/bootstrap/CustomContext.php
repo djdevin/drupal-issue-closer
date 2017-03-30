@@ -22,23 +22,28 @@ class CustomContext implements Context, SnippetAcceptingContext {
   }
 
   /**
-   * @Then I close all the active :version issues
+   * @Then I close all :project issues with version :version and message:
    */
-  public function doDrupalThings($version) {
+  public function iCloseAllIssuesWithVersionAndMessage($project, $version, PyStringNode $closeText) {
+    $closeText = (string) $closeText;
+
+    $this->minkContext->visit("https://www.drupal.org/api-d7/node.json?type=project_module&field_project_machine_name=$project");
+    $json = $this->minkContext->getSession()->getPage()->getContent();
+    $project = json_decode($json);
+    $project_id = $project->list[0]->nid;
+
     $closeStatus = array(1, 13, 8, 14, 15, 4, 16);
     foreach ($closeStatus as $status) {
-      $this->minkContext->visit("https://www.drupal.org/api-d7/node.json?type=project_issue&field_project=26481&field_issue_version=$version&field_issue_status=$status&limit=100");
+      $this->minkContext->visit("https://www.drupal.org/api-d7/node.json?type=project_issue&field_project=$project_id&field_issue_version=$version&field_issue_status=$status&limit=100");
       $json = $this->minkContext->getSession()->getPage()->getContent();
       $issues = json_decode($json);
       foreach ($issues->list as $issue) {
         print "Will update $issue->nid: $issue->field_issue_version - $issue->title\n";
-        //
         $this->minkContext->visit("/node/$issue->nid");
         $this->minkContext->assertFieldNotContains('Status', 'Closed (outdated)');
         $this->minkContext->selectOption('Status', 'Closed (outdated)');
-        $this->minkContext->fillField('Comment', 'This issue is being closed because it was filed against a version that is no longer supported. If the issue still persists in the latest version of Quiz, please open a new issue.');
+        $this->minkContext->fillField('Comment', $closeText);
         $this->minkContext->pressButton('Save');
-        // */
       }
     }
   }
