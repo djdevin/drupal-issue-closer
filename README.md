@@ -1,4 +1,4 @@
-Drupal issue closer
+Drupal.org issue closer
 ===
 
 While drupal.org does have a REST API, it is read-only.
