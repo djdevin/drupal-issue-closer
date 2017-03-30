@@ -13,6 +13,11 @@ This is in line with their ToS as it is using your account and credentials. I'm 
 
 You probably shouldn't loop through all drupal.org issues and close them...
 
+Installation
+===
+1. Checkout this repository
+2. Run `composer install`
+
 How to use
 ===
 1. Take a look at features/drupal.feature.example
