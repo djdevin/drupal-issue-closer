@@ -59,3 +59,7 @@ ToDo
 Wishlist
 ===
 drupal.org needs to add some VBOs
+
+Why Behat? You could just use Mink for this
+===
+I know. Gherkin was easier than building a configuration syntax.
