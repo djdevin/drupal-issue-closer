@@ -20,8 +20,8 @@ Installation
 
 How to use
 ===
-1. Take a look at features/drupal.feature.example
-2. Copy that to features/mymodule.feature
+1. Take a look at `features/drupal.feature.example`
+2. Copy that to `features/mymodule.feature`
 3. Edit it so it looks like this:
 ```
 Feature: Update old issues on drupal.org
