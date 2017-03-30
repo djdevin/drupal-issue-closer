@@ -1,3 +1,0 @@
-This is a bot that uses Behat to close drupal.org issues programmatically.
-
-While drupal.org does have a REST API, it is read-only.
